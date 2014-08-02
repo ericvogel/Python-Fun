@@ -1,6 +1,6 @@
 from Tkinter import *
 import time
-import LineObject
+import GameObject
 import WorldData
 
 
@@ -23,9 +23,9 @@ def Run():
 		w.delete(ALL)
 
 
-	line1 = LineObject.LineObject()
-	line1.setDraw(w.create_line(line1.getX(), line1.getY(), line1.getX(), line1.getY() + 200, width=2))
-	line1.setPos(10, 10)
+	line1 = GameObject.GameObject()
+	line1.setDraw(PhotoImage(file = 'Bin/Images/img.gif'))
+	line1.setPos(10, 100)
 	ObjectsList.append(line1)
 	
 	
@@ -36,7 +36,9 @@ def Run():
 		#print 'drawing objects'
 		
 		for objectToDraw in ObjectsList: 
-			objectToDraw.getDraw()
+			w.create_image(objectToDraw.getX(), objectToDraw.getY(), image = objectToDraw.getDraw())
+			w.create_line(objectToDraw.getX(), objectToDraw.getY(), 400, 300)
+			#print objectToDraw.getDraw()
 
 
 	def updateObjects():
@@ -45,16 +47,36 @@ def Run():
 			objectToUpdate.update()
 
 	def pressedUp(event):
+		WorldData.isUpPressed = True
 		print 'pressed up'
 
 	def pressedDown(event):
+		WorldData.isDownPressed = True
 		print 'pressed Down'
 
 	def releasedUp(event):
+		WorldData.isUpPressed = False
 		print 'released up'
 
 	def releasedDown(event):
+		WorldData.isDownPressed = False
 		print 'released Down'
+
+	def pressedRight(event):
+		WorldData.isRightPressed = True
+		print 'pressed Right'
+
+	def pressedLeft(event):
+		WorldData.isLeftPressed = True
+		print 'pressed Left'
+
+	def releasedRight(event):
+		WorldData.isRightPressed = False
+		print 'released Right'
+
+	def releasedLeft(event):
+		WorldData.isLeftPressed = False
+		print 'released Left'
 
 
 	
@@ -62,6 +84,10 @@ def Run():
 	master.bind('<Down>', pressedDown)
 	master.bind('<KeyRelease-Up>', releasedUp)
 	master.bind('<KeyRelease-Down>', releasedDown)
+	master.bind('<Right>', pressedRight)
+	master.bind('<Left>', pressedLeft)
+	master.bind('<KeyRelease-Right>', releasedRight)
+	master.bind('<KeyRelease-Left>', releasedLeft)
 
 	#timeOne = time.time()
 	#print timeOne
