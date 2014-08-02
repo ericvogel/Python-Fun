@@ -6,8 +6,21 @@ import WorldData
 
 
 master = Tk()
+master.title( WorldData.gameName + " - Powered by the BlackHawk Engine")
 w = Canvas(master, width = WorldData.getWorldWidth(), height = WorldData.getWorldHeight())
 w.pack()
+
+if(WorldData.debugging):
+	debugWindow = Tk()
+	debugWindow.title(WorldData.gameName + " - Debug Window")
+	t1 = Text(debugWindow)
+	t1.insert(INSERT, "Up Arrow Pressed\nDown Arrow Pressed\nLeft Arrow Pressed\nRight Arrow Pressed")
+	t1.pack()
+	t1.tag_add("up", 1.0, 1.16)
+	t1.tag_add("down", 2.0, 2.18)
+	t1.tag_add("left", 3.0, 3.18)
+	t1.tag_add("right", 4.0, 4.19)
+
 
 
 def getW():
@@ -28,8 +41,6 @@ def Run():
 	line1.setPos(10, 100)
 	ObjectsList.append(line1)
 	
-	
-
 
 
 	def drawObjects():
@@ -48,35 +59,51 @@ def Run():
 
 	def pressedUp(event):
 		WorldData.isUpPressed = True
-		print 'pressed up'
+		if (WorldData.debugging):
+			t1.tag_config("up", background= "green")
+		#print 'pressed up'
 
 	def pressedDown(event):
 		WorldData.isDownPressed = True
-		print 'pressed Down'
+		if (WorldData.debugging):
+			t1.tag_config("down", background= "green")
+		#print 'pressed Down'
 
 	def releasedUp(event):
 		WorldData.isUpPressed = False
-		print 'released up'
+		if (WorldData.debugging):
+			t1.tag_config("up", background= "red")
+		#print 'released up'
 
 	def releasedDown(event):
 		WorldData.isDownPressed = False
-		print 'released Down'
+		if (WorldData.debugging):
+			t1.tag_config("down", background= "red")
+		#print 'released Down'
 
 	def pressedRight(event):
 		WorldData.isRightPressed = True
-		print 'pressed Right'
+		if (WorldData.debugging):
+			t1.tag_config("right", background= "green")
+		#print 'pressed Right'
 
 	def pressedLeft(event):
 		WorldData.isLeftPressed = True
-		print 'pressed Left'
+		if (WorldData.debugging):
+			t1.tag_config("left", background= "green")
+		#print 'pressed Left'
 
 	def releasedRight(event):
 		WorldData.isRightPressed = False
-		print 'released Right'
+		if (WorldData.debugging):
+			t1.tag_config("right", background= "red")
+		#print 'released Right'
 
 	def releasedLeft(event):
 		WorldData.isLeftPressed = False
-		print 'released Left'
+		if (WorldData.debugging):
+			t1.tag_config("left", background= "red")
+		#print 'released Left'
 
 
 	
