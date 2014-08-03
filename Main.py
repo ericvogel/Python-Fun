@@ -53,10 +53,14 @@ def Run():
 			#print objectToDraw.getDraw()
 
 
+
 	def updateObjects():
 		#print 'updating objects'
 		for objectToUpdate in ObjectsList:
 			objectToUpdate.update()
+
+
+#====get key data===========================================
 
 	def pressedUp(event):
 		WorldData.isUpPressed = True
@@ -105,6 +109,8 @@ def Run():
 		if (WorldData.debugging):
 			t1.tag_config("left", background= "red")
 		#print 'released Left'
+
+#====end key data===========================================
 
 
 	
