@@ -3,13 +3,14 @@ import time
 import GameObject
 import WorldData
 
-
-
+#=====main window===========================================
 master = Tk()
 master.title( WorldData.gameName + " - Powered by the BlackHawk Engine")
 w = Canvas(master, width = WorldData.getWorldWidth(), height = WorldData.getWorldHeight())
 w.pack()
+#===========================================================
 
+#=====debug window==========================================
 if(WorldData.debugging):
 	debugWindow = Tk()
 	debugWindow.title(WorldData.gameName + " - Debug Window")
@@ -21,7 +22,7 @@ if(WorldData.debugging):
 	t1.tag_add("left", 3.0, 3.18)
 	t1.tag_add("right", 4.0, 4.19)
 
-
+#===========================================================
 
 def getW():
 	return w
