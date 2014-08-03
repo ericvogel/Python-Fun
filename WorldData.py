@@ -1,4 +1,4 @@
-
+#====Global Vars============================================
 gameName = 'Test Game'
 debugging = True
 worldWidth = 800
