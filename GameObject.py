@@ -32,20 +32,6 @@ class GameObject():
 			self.image = newImage
 			print self.image
 
-		def bounce(self):
-			if ((self.getX() < WorldData.getWorldWidth()-50) and (self.movingRight == True)):
-				self.setPos(self.getX()+self.movingSpeed, self.getY())
-			elif (self.getX() >= WorldData.getWorldWidth()-50):
-				self.setPos(self.getX()-self.movingSpeed, self.getY())
-				self.movingRight = False
-			elif ((self.getX() > 50) and (self.movingRight == False)):
-				self.setPos(self.getX()-self.movingSpeed, self.getY())
-			elif ((self.getX() <= 50)):
-				self.setPos(self.getX()+self.movingSpeed, self.getY())
-				self.movingRight = True
-			else:
-				print'Error wrong state reached for ' + str(self)
-
 
 		def move(self):
 			if (WorldData.isDownPressed == True):
@@ -59,7 +45,6 @@ class GameObject():
 				self.setPos(self.getX()-self.movingSpeed, self.getY())
 
 		def update(self):
-			#self.bounce()
 			self.move()
 			self.counter += 1
 		
