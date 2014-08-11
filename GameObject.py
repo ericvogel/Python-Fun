@@ -1,4 +1,3 @@
-from Tkinter import *
 import WorldData
 
 
@@ -12,9 +11,6 @@ class GameObject():
 			self.x = 0
 			self.y = 0
 			self.image = None
-			self.movingRight = True
-			self.movingSpeed = 10
-			self.counter = 0
 
 		def setPos(self, newX, newY):
 			self.x = newX
@@ -30,7 +26,7 @@ class GameObject():
 		
 		def setDraw(self, newImage):
 			self.image = newImage
-			print self.image
+			#print self.image
 
 
 		def move(self):
@@ -45,6 +41,5 @@ class GameObject():
 				self.setPos(self.getX()-self.movingSpeed, self.getY())
 
 		def update(self):
-			self.move()
-			self.counter += 1
+			pass
 		

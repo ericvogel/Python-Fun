@@ -1,7 +1,7 @@
 from Tkinter import *
 import time
-import GameObject
 import WorldData
+import BoxObject
 
 #=====main window===========================================
 master = Tk()
@@ -37,10 +37,15 @@ def Run():
 		w.delete(ALL)
 
 
-	line1 = GameObject.GameObject()
-	line1.setDraw(PhotoImage(file = 'Bin/Images/img.gif'))
-	line1.setPos(10, 100)
-	ObjectsList.append(line1)
+	box1 = BoxObject.BoxObject()
+	box1.setDraw(PhotoImage(file = 'Bin/Images/img.gif'))
+	box1.setPos(100, 100)
+	ObjectsList.append(box1)
+
+	box2 = BoxObject.BoxObject()
+	box2.setDraw(PhotoImage(file = 'Bin/Images/img.gif'))
+	box2.setPos(200, 200)
+	ObjectsList.append(box2)
 	
 
 
@@ -49,7 +54,7 @@ def Run():
 		
 		for objectToDraw in ObjectsList: 
 			w.create_image(objectToDraw.getX(), objectToDraw.getY(), image = objectToDraw.getDraw())
-			w.create_line(objectToDraw.getX(), objectToDraw.getY(), 400, 300)
+			#w.create_line(objectToDraw.getX(), objectToDraw.getY(), 400, 300)
 			#print objectToDraw.getDraw()
 
 
