@@ -2,6 +2,7 @@ from Tkinter import *
 import time
 import WorldData
 import BoxObject
+import StaticBox
 
 #=====main window===========================================
 master = Tk()
@@ -28,8 +29,7 @@ def getW():
 	return w
 
 def Run():
-	frameRate = 30
-	ObjectsList = []
+	frameRate = 60
 	global w
 	global master
 
@@ -38,21 +38,18 @@ def Run():
 
 
 	box1 = BoxObject.BoxObject()
-	box1.setDraw(PhotoImage(file = 'Bin/Images/img.gif'))
-	box1.setPos(100, 100)
-	ObjectsList.append(box1)
+	box1_Image = PhotoImage(file = 'Bin/Images/img.gif')
+	WorldData.addToObjectList(box1, 100, 100, box1_Image)
 
-	box2 = BoxObject.BoxObject()
-	box2.setDraw(PhotoImage(file = 'Bin/Images/img.gif'))
-	box2.setPos(200, 200)
-	ObjectsList.append(box2)
-	
+	box2 = StaticBox.StaticBox()
+	box2_Image = PhotoImage(file = 'Bin/Images/img2.gif')
+	WorldData.addToObjectList(box2, 400, 300, box2_Image)
 
 
 	def drawObjects():
 		#print 'drawing objects'
 		
-		for objectToDraw in ObjectsList: 
+		for objectToDraw in WorldData.getObjectList(): 
 			w.create_image(objectToDraw.getX(), objectToDraw.getY(), image = objectToDraw.getDraw())
 			#w.create_line(objectToDraw.getX(), objectToDraw.getY(), 400, 300)
 			#print objectToDraw.getDraw()
@@ -61,11 +58,12 @@ def Run():
 
 	def updateObjects():
 		#print 'updating objects'
-		for objectToUpdate in ObjectsList:
+		#print box1.getCollision()[0]
+		for objectToUpdate in WorldData.getObjectList():
 			objectToUpdate.update()
 
 
-#====get key data===========================================
+#====get key  press data====================================
 
 	def pressedUp(event):
 		WorldData.isUpPressed = True
@@ -115,7 +113,7 @@ def Run():
 			t1.tag_config("left", background= "red")
 		#print 'released Left'
 
-#====end key data===========================================
+#====end key press data=====================================
 
 
 	
